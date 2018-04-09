@@ -36,19 +36,19 @@ void EnvModel::generateRandomEnv()
 {
     // Initialize Lines for Map
     QList<QLine*> ws = QList<QLine*>();
+    // Order Matters
     ws.append(new QLine(0,0,0,HEIGHT));
-    ws.append(new QLine(0,0,WIDTH,0));
+    ws.append(new QLine(WIDTH,0,0,0));
     ws.append(new QLine(0,HEIGHT,WIDTH,HEIGHT));
-    ws.append(new QLine(WIDTH,0,WIDTH,HEIGHT));
+    ws.append(new QLine(WIDTH,HEIGHT,WIDTH,0));
     map = new Map(ws, QRect(0,0,WIDTH,HEIGHT));
 
     //Initialize Objects
-    Ball *e1 = new Ball(100, 100, 1, 1, 1, 10);
-    Ball *e2 = new Ball(200, 200, 1, -1, -1, 10);
-
-    geoObjects.append(e1);
-
-    geoObjects.append(e2);
+    for (int i = 0; i < 100; i++)
+    {
+        Ball *e = new Ball(rand() % 500+10, rand() % 500+10, 1, rand() % 10 -5, rand() % 10 -5, 10);
+        geoObjects.append(e);
+    }
 }
 
 bool EnvModel::isColliding(Entity *e1, Entity *e2)
@@ -66,6 +66,31 @@ bool EnvModel::update()
     emit updateAll();  // Update position of objects by 1 frame
     emit processAll();  // Calculate status after interations
 
+    // Collision related function
+    for (Entity *e : geoObjects)  // Loop for Walls
+    {
+        Ball* b = dynamic_cast<Ball*>(e);
+        if (b)
+        {
+            QList<QLine*> lines = map->hitWall(b);
+            for (QLine *l : lines)
+            {
+                map->doHitWall(b, l);
+            }
+        }
+    }
+
+    for (int i = 0; i < geoObjects.size(); i++)
+    {
+        for (int j = 0; j < geoObjects.size(); j++)
+        {
+            if (geoObjects[i]->isCollidingWith(geoObjects[j]))
+            {
+                geoObjects[i]->getLabel()->setStyleSheet("QLabel { background-color : blue; color : blue; }");
+                geoObjects[j]->getLabel()->setStyleSheet("QLabel { background-color : blue; color : blue; }");
+            }
+        }
+    }
 }
 
 bool EnvModel::reset()

@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setFixedSize(EnvModel::WIDTH, EnvModel::HEIGHT);
+    setWindowTitle("N-Body-Collision");
+
     initGUI();
 
     fps = 60;
@@ -53,6 +56,7 @@ void MainWindow::makeLabel(Entity *e)
                          b->getRadius(),
                          b->getRadius());
         lbl->setStyleSheet("QLabel { background-color : red; color : blue; }");
+        lbl->setScaledContents(true);
         b->setLabel(lbl);
         lbl->show();
     }

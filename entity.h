@@ -14,8 +14,8 @@ class Entity : public QObject  // Represent a physical object of the map
     float x;
     float y;
     float weight;
-    QVector2D velocity;
-    QRect bound;  // The bounding rect of object
+    QVector2D *velocity;
+    QRect* bound;  // The bounding rect of object
 
     QLabel* label;  // The label representation of the entity
 
@@ -30,9 +30,6 @@ public:
     QLabel *getLabel() const;
     void setLabel(QLabel *value);
 
-    QVector2D getVelocity() const;
-    void setVelocity(const QVector2D &value);
-
     float getWeight() const;
     void setWeight(float value);
 
@@ -41,6 +38,9 @@ public:
 
     float getY() const;
     void setY(float value);
+
+    QVector2D *getVelocity() const;
+    void setVelocity(QVector2D *value);
 
 signals:
 

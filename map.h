@@ -22,7 +22,7 @@ public:
 
     QList<QLine*> hitWall(Entity* obj);  // Return all lines that collides
     // Given colliding walls, modify obj state return succeed status
-    bool doHitWall(Entity* obj, QList<QLine*> w);
+    bool doHitWall(Entity* obj, QLine* w);
 
     QRect getBoundary() const;
     void setBoundary(const QRect &value);
