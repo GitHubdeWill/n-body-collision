@@ -24,6 +24,8 @@ public:
     EnvModel();
     ~EnvModel();
 
+    void generateRandomEnv();
+
     bool isColliding(Entity* e1, Entity* e2);  // Check if 2 obj is colliding
     bool doCollision(Entity* e1, Entity* e2);  // Do Collision and update velocity
 
@@ -40,6 +42,9 @@ public:
 
     QStack<std::pair<Entity *, Entity *> > getCollidingPairs() const;
     void setCollidingPairs(const QStack<std::pair<Entity *, Entity *> > &value);
+
+    static int WIDTH;       //The width of the window
+    static int HEIGHT;      //The height of the window
 
 signals:
     bool updateAll();  // Update the world by one frame

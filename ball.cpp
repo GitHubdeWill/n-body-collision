@@ -21,8 +21,8 @@ bool Ball::isCollidingWith(Entity *other)
     Ball* ball = dynamic_cast<Ball*>(other);
     if (ball != nullptr)
     {
-        float distancex = pow((ball->getX() - getX), 2);
-        float distancey = pow((ball->getY() - getY), 2);
+        float distancex = pow((ball->getX() - getX()), 2);
+        float distancey = pow((ball->getY() - getY()), 2);
 
         float dis = sqrt(distancex - distancey);
         if (dis <= ball->getRadius() + getRadius()) return true;
@@ -37,5 +37,5 @@ bool Ball::doCollidingWith(Entity *other)
     {
 
     }
-    return false
+    return false;
 }

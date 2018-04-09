@@ -5,6 +5,7 @@
 #include <QVector2D>
 #include <QLabel>
 #include <QRect>
+#include <QDebug>
 
 class Entity : public QObject  // Represent a physical object of the map
 {

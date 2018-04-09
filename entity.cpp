@@ -60,8 +60,10 @@ void Entity::setY(float value)
 
 bool Entity::update()
 {
+    qDebug() << "update" << x << y;
     // Move 1 velocity unit from current position
     x += velocity.x();
     y += velocity.y();
+    label->setGeometry(x, y, 10, 10);
 }
 

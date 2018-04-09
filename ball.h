@@ -1,6 +1,8 @@
 #ifndef BALL_H
 #define BALL_H
 
+#include "math.h"
+
 #include "entity.h"
 
 class Ball : public virtual Entity
