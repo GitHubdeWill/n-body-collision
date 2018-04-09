@@ -80,9 +80,9 @@ bool EnvModel::update()
         }
     }
 
-    for (int i = 0; i < geoObjects.size(); i++)
+    for (int i = 0; i < geoObjects.size()-1; i++)
     {
-        for (int j = 0; j < geoObjects.size(); j++)
+        for (int j = i+1; j < geoObjects.size(); j++)
         {
             if (geoObjects[i]->isCollidingWith(geoObjects[j]))
             {
