@@ -36,6 +36,7 @@ bool Ball::doCollidingWith(Entity *other)
     if (ball != nullptr)
     {
         // TODO: Hit Ball
+        QVector2D
     }
     return false;
 }

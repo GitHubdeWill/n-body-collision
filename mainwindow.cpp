@@ -39,7 +39,6 @@ void MainWindow::initGUI()
     {
         Ball* b = dynamic_cast<Ball*>(entities[i]);
         if (b) {
-            qDebug() << "Making Label";
             makeLabel(entities[i]);
             continue;
         }

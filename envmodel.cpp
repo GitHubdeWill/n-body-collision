@@ -88,8 +88,13 @@ bool EnvModel::update()
             {
                 geoObjects[i]->getLabel()->setStyleSheet("QLabel { background-color : blue; color : blue; }");
                 geoObjects[j]->getLabel()->setStyleSheet("QLabel { background-color : blue; color : blue; }");
+                collidingPairs.push(std::make_pair(geoObjects[i], geoObjects[j]));
             }
         }
+    }
+
+    for (std::pair<Entity*, Entity*> p : collidingPairs) {
+        p.first->doCollidingWith(p.second);
     }
 }
 
