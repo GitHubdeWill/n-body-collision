@@ -1,5 +1,13 @@
 #include "entity.h"
 
+Entity::Entity(float posX, float posY, float w, float vecX, float vecY)
+{
+    x = posX;
+    y = posY;
+    weight = w;
+    velocity = QVector2D(vecX, vecY);
+}
+
 QLabel *Entity::getLabel() const
 {
     return label;
@@ -30,22 +38,30 @@ void Entity::setWeight(float value)
     weight = value;
 }
 
-QPointF Entity::getPosition() const
+float Entity::getX() const
 {
-    return position;
+    return x;
 }
 
-void Entity::setPosition(const QPointF &value)
+void Entity::setX(float value)
 {
-    position = value;
+    x = value;
+}
+
+float Entity::getY() const
+{
+    return y;
+}
+
+void Entity::setY(float value)
+{
+    y = value;
 }
 
 bool Entity::update()
 {
-
+    // Move 1 velocity unit from current position
+    x += velocity.x();
+    y += velocity.y();
 }
 
-Entity::Entity()
-{
-
-}

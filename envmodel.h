@@ -25,9 +25,9 @@ public:
     ~EnvModel();
 
     bool isColliding(Entity* e1, Entity* e2);  // Check if 2 obj is colliding
-
     bool doCollision(Entity* e1, Entity* e2);  // Do Collision and update velocity
 
+    bool update();  // Update all objects in model then check collisions
 
     Map *getMap() const;
     void setMap(Map *value);
@@ -42,10 +42,12 @@ public:
     void setCollidingPairs(const QStack<std::pair<Entity *, Entity *> > &value);
 
 signals:
-    void updateAll();  // Update the world by one frame
-    void resetAll();
+    bool updateAll();  // Update the world by one frame
+    bool processAll();  // check interactions and update obj params
+    void resetAll();  // Reset everything to init state
 
 public slots:
+    bool reset();
 };
 
 #endif // ENVMODEL_H

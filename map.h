@@ -6,31 +6,34 @@
 #include <QList>
 #include <QLine>
 
-#include <entity.h>
+#include "entity.h"
+#include "ball.h"
 
 class Map : public QObject  // Store bounds and walls in the map
 {
     Q_OBJECT
 
     QRect boundary;  // The boundary of the map
-    QList<QLine> walls; // All walls represents by lines, not mutable
+    QList<QLine*> walls; // All walls represents by lines, not mutable
 
 public:
-    explicit Map(QObject *parent = nullptr);
+    Map(QList<QLine*> lines, QRect bound);
+    ~Map();
 
-    bool hitWall(Entity* obj);
-    bool doHitWall(Entity* obj);
+    QList<QLine*> hitWall(Entity* obj);  // Return all lines that collides
+    // Given colliding walls, modify obj state return succeed status
+    bool doHitWall(Entity* obj, QList<QLine*> w);
 
     QRect getBoundary() const;
     void setBoundary(const QRect &value);
 
-    QList<QLine> getWalls() const;
-    void setWalls(const QList<QLine> &value);
+    QList<QLine *> getWalls() const;
+    void setWalls(const QList<QLine *> &value);
 
 signals:
 
 public slots:
-    bool update();
+    bool updateMap();
 };
 
 #endif // MAP_H

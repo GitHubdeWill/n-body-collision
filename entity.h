@@ -2,22 +2,24 @@
 #define ENTITY_H
 
 #include <QObject>
-#include <QPointF>
 #include <QVector2D>
 #include <QLabel>
+#include <QRect>
 
 class Entity : public QObject  // Represent a physical object of the map
 {
     Q_OBJECT
 
-    QPointF position;
+    float x;
+    float y;
     float weight;
     QVector2D velocity;
+    QRect bound;  // The bounding rect of object
 
     QLabel* label;  // The label representation of the entity
 
 public:
-    Entity();
+    Entity(float posX, float posY, float w, float vecX, float vecY);
 
     // Check if this entity is colliding with another.
     virtual bool isCollidingWith(Entity* other) = 0;
@@ -33,8 +35,11 @@ public:
     float getWeight() const;
     void setWeight(float value);
 
-    QPointF getPosition() const;
-    void setPosition(const QPointF &value);
+    float getX() const;
+    void setX(float value);
+
+    float getY() const;
+    void setY(float value);
 
 signals:
 
