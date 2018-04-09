@@ -2,10 +2,10 @@
 
 
 //The default width of the game
-int EnvModel::WIDTH = 1024;
+int EnvModel::WIDTH = 500;
 
 //The default height
-int EnvModel::HEIGHT = 768;
+int EnvModel::HEIGHT = 500;
 
 EnvModel::EnvModel()
 {
@@ -44,9 +44,9 @@ void EnvModel::generateRandomEnv()
     map = new Map(ws, QRect(0,0,WIDTH,HEIGHT));
 
     //Initialize Objects
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 30; i++)
     {
-        Ball *e = new Ball(rand() % 500+10, rand() % 500+10, 1, rand() % 10 -5, rand() % 10 -5, 10);
+        Ball *e = new Ball(rand() % 480+10, rand() % 480+10, rand() % 10+1, rand() % 10 -5, rand() % 10 -5, 6);
         geoObjects.append(e);
     }
 }
@@ -86,8 +86,8 @@ bool EnvModel::update()
         {
             if (geoObjects[i]->isCollidingWith(geoObjects[j]))
             {
-                geoObjects[i]->getLabel()->setStyleSheet("QLabel { background-color : blue; color : blue; }");
-                geoObjects[j]->getLabel()->setStyleSheet("QLabel { background-color : blue; color : blue; }");
+//                geoObjects[i]->getLabel()->setStyleSheet("QLabel { background-color : blue; color : blue; }");
+//                geoObjects[j]->getLabel()->setStyleSheet("QLabel { background-color : blue; color : blue; }");
                 collidingPairs.push(std::make_pair(geoObjects[i], geoObjects[j]));
             }
         }
@@ -96,6 +96,7 @@ bool EnvModel::update()
     for (std::pair<Entity*, Entity*> p : collidingPairs) {
         p.first->doCollidingWith(p.second);
     }
+    collidingPairs.clear();
 }
 
 bool EnvModel::reset()

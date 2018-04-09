@@ -62,6 +62,15 @@ QList<QLine*> Map::hitWall(Entity *obj)
             float dist = abs(A * D - C * B) / sqrt(C * C + D * D);
             if (dist <= ball->getRadius())
             {
+                if (dist < ball->getRadius())
+                {
+
+                    QVector2D wall = QVector2D(l->p2().x()-l->p1().x(), l->p2().y()-l->p1().y());
+                    QVector2D normal = QVector2D(-1*wall.y(), wall.x());
+                    normal.normalize();
+                    ball->setX(ball->getX() - normal.x());
+                    ball->setY(ball->getY() - normal.y());
+                }
                 ret.append(l);
             }
         }

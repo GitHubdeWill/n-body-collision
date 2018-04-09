@@ -8,6 +8,7 @@
 class Ball : public virtual Entity
 {
     float radius;
+    int stuck;
 
 public:
     explicit Ball (float posX, float posY, float w, float vecX, float vecY, float r);
@@ -17,6 +18,8 @@ public:
 
     float getRadius() const;
     void setRadius(float value);
+    int getStuck() const;
+    void setStuck(int value);
 };
 
 #endif // BALL_H

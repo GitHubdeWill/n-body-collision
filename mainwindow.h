@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QDebug>
+#include <QPainter>
 
 #include "envmodel.h"
 

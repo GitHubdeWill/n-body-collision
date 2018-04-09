@@ -50,11 +50,12 @@ void MainWindow::makeLabel(Entity *e)
     Ball* b = dynamic_cast<Ball*>(e);
     if (b) {
         QLabel* lbl = new QLabel(this);
-        lbl->setGeometry(b->getX()-b->getRadius(),
-                         b->getY()-b->getRadius(),
-                         b->getRadius(),
-                         b->getRadius());
-        lbl->setStyleSheet("QLabel { background-color : red; color : blue; }");
+        lbl->setGeometry(b->getX()-b->getRadius()*3,
+                         b->getY()-b->getRadius()*3,
+                         b->getRadius()*6,
+                         b->getRadius()*6);
+        lbl->setText("O");
+//        lbl->setStyleSheet("QLabel { background-color : red; color : blue; }");
         lbl->setScaledContents(true);
         b->setLabel(lbl);
         lbl->show();
