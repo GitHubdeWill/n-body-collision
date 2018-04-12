@@ -3,6 +3,7 @@
 bool Map::updateMap()
 {
     // TODO: Update the whole map.
+    return false;
 }
 
 QRect Map::getBoundary() const

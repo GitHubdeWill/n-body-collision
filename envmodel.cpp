@@ -2,10 +2,10 @@
 
 
 //The default width of the game
-int EnvModel::WIDTH = 500;
+int EnvModel::WIDTH = 1366;
 
 //The default height
-int EnvModel::HEIGHT = 500;
+int EnvModel::HEIGHT = 768;
 
 EnvModel::EnvModel()
 {
@@ -44,9 +44,9 @@ void EnvModel::generateRandomEnv()
     map = new Map(ws, QRect(0,0,WIDTH,HEIGHT));
 
     //Initialize Objects
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < 100; i++)
     {
-        Ball *e = new Ball(rand() % 480+10, rand() % 480+10, rand() % 10+1, rand() % 10 -5, rand() % 10 -5, 6);
+        Ball *e = new Ball(rand() % (WIDTH-20)+10, rand() % (HEIGHT-20)+10, rand() % 10+1, rand() % 10 -5, rand() % 10 -5, 6);
         geoObjects.append(e);
     }
 }
@@ -97,6 +97,7 @@ bool EnvModel::update()
         p.first->doCollidingWith(p.second);
     }
     collidingPairs.clear();
+    return true;
 }
 
 bool EnvModel::reset()
@@ -109,6 +110,7 @@ bool EnvModel::reset()
     // Copy init objects to current objects
     geoObjects = initObjects;
     emit updateAll();
+    return true;
 }
 
 Map *EnvModel::getMap() const

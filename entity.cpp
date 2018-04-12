@@ -64,5 +64,6 @@ bool Entity::update()
     x += velocity->x();
     y += velocity->y();
     label->setGeometry(x, y, 10, 10);
+    return true;
 }
 

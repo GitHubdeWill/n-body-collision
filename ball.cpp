@@ -35,17 +35,16 @@ bool Ball::isCollidingWith(Entity *other)
         float distancex = pow((ball->getX() - getX()), 2);
         float distancey = pow((ball->getY() - getY()), 2);
 
+        QVector2D disVec = QVector2D(ball->getX() - getX(), ball->getY() - getY());
+        disVec.normalize();
+
         float dis = sqrt(distancex + distancey);
-        if ((dis <= ball->getRadius() + getRadius()) &&  // Stuck checking
-               ((ball->getRadius() + getRadius()) - dis) >= (this->getVelocity()->length()+ball->getVelocity()->length()))
-        {
-//            qDebug() << "stucked";
-            this->setX(this->getX() + (this->getX() - ball->getX()));
-            this->setY(this->getY() + (this->getY() - ball->getY()));
-            ball->setX(ball->getX() + (ball->getX() - this->getX()));
-            ball->setY(ball->getY() + (ball->getY() - this->getY()));
+        if (dis <= ball->getRadius() + getRadius()) {
+            float minDis = ball->getRadius() + this->getRadius();
+            ball->setX(this->getX() + disVec.x() * minDis);
+            ball->setY(this->getY() + disVec.y() * minDis);
+            return true;
         }
-        if (dis <= ball->getRadius() + getRadius()) return true;
     }
     return false;
 }
