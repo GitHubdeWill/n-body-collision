@@ -10,8 +10,7 @@
 #include "map.h"
 #include "entity.h"
 
-class EnvModel : public QObject
-{
+class EnvModel : public QObject {
     Q_OBJECT
 
     Map* map;  // Map of the Environment

@@ -5,8 +5,7 @@
 
 #include "entity.h"
 
-class Ball : public virtual Entity
-{
+class Ball : public virtual Entity {
     float radius;
     int stuck;
 

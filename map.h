@@ -9,8 +9,8 @@
 #include "entity.h"
 #include "ball.h"
 
-class Map : public QObject  // Store bounds and walls in the map
-{
+// Store bounds and walls in the map
+class Map : public QObject {
     Q_OBJECT
 
     QRect boundary;  // The boundary of the map

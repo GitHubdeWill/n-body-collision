@@ -12,8 +12,7 @@ namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
     EnvModel model;  // For GUI/Model interaction

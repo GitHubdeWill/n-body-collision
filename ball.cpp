@@ -1,37 +1,30 @@
 #include "ball.h"
 
-float Ball::getRadius() const
-{
+float Ball::getRadius() const {
     return radius;
 }
 
-void Ball::setRadius(float value)
-{
+void Ball::setRadius(float value) {
     radius = value;
 }
 
-int Ball::getStuck() const
-{
+int Ball::getStuck() const {
     return stuck;
 }
 
-void Ball::setStuck(int value)
-{
+void Ball::setStuck(int value) {
     stuck = value;
 }
 
 Ball::Ball(float posX, float posY, float w, float vecX, float vecY, float r)
-    : Entity(posX, posY, w, vecX, vecY)
-{
+    : Entity(posX, posY, w, vecX, vecY) {
     radius = r;
     stuck = 0;
 }
 
-bool Ball::isCollidingWith(Entity *other)
-{
+bool Ball::isCollidingWith(Entity *other) {
     Ball* ball = dynamic_cast<Ball*>(other);
-    if (ball != nullptr)
-    {
+    if (ball != nullptr) {
         float distancex = pow((ball->getX() - getX()), 2);
         float distancey = pow((ball->getY() - getY()), 2);
 
@@ -49,11 +42,9 @@ bool Ball::isCollidingWith(Entity *other)
     return false;
 }
 
-bool Ball::doCollidingWith(Entity *other)
-{
+bool Ball::doCollidingWith(Entity *other) {
     Ball* ball = dynamic_cast<Ball*>(other);
-    if (ball != nullptr)
-    {
+    if (ball != nullptr) {
         // TODO: Hit Ball
         QVector2D v1 = *(this->getVelocity());
         QVector2D v2 = *(other->getVelocity());

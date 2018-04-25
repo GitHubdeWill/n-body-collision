@@ -3,8 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+    ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     setFixedSize(EnvModel::WIDTH, EnvModel::HEIGHT);
@@ -20,23 +19,20 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->start();
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::initGUI()
-{
+void MainWindow::initGUI() {
     //Clear all of the current labels from the window
     QObjectList objects = children();
     for(QObject* object : objects) {
         QLabel* lbl = dynamic_cast<QLabel*>(object);
-        if(lbl) { lbl->deleteLater(); }
+        if (lbl) { lbl->deleteLater(); }
     }
 
     auto entities = model.getGeoObjects();
-    for(int i = 0; i < entities.size(); i++)
-    {
+    for(int i = 0; i < entities.size(); i++) {
         Ball* b = dynamic_cast<Ball*>(entities[i]);
         if (b) {
             makeLabel(entities[i]);
@@ -45,8 +41,7 @@ void MainWindow::initGUI()
     }
 }
 
-void MainWindow::makeLabel(Entity *e)
-{
+void MainWindow::makeLabel(Entity *e) {
     Ball* b = dynamic_cast<Ball*>(e);
     if (b) {
         QLabel* lbl = new QLabel(this);
@@ -64,7 +59,6 @@ void MainWindow::makeLabel(Entity *e)
     }
 }
 
-void MainWindow::timerHit()
-{
+void MainWindow::timerHit() {
     model.update();
 }

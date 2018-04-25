@@ -7,8 +7,7 @@
 #include <QRect>
 #include <QDebug>
 
-class Entity : public QObject  // Represent a physical object of the map
-{
+class Entity : public QObject {  // Represent a physical object of the map{
     Q_OBJECT
 
     float x;
